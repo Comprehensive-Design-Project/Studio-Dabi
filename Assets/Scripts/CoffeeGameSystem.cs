@@ -20,8 +20,8 @@ public class CoffeeGameSystem : MonoBehaviour
     bool isGameCompleted = false;
     int runnerStarter = 0;
     int runnerDestination = 1;
-    
 
+    public Slider BWslider;
     public GameObject answerPatternTile;
     public Color playerColorSelection;
 
@@ -134,9 +134,19 @@ public class CoffeeGameSystem : MonoBehaviour
     }
 
     void Update()
-    { 
+    {
+
+        BWslider.value -= 0.0005f;
+        if(BWslider.value >= 0.5f)
+        {
+            answerPatternTile.GetComponent<Outline>().effectColor = Color.white;
+        }
+        else
+        {
+            answerPatternTile.GetComponent<Outline>().effectColor = Color.black;
+        }
         // space를 누르면 채점을 시작한다.
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             scoring();
         }
@@ -148,7 +158,10 @@ public class CoffeeGameSystem : MonoBehaviour
 
     }
 
-
+    public void getUP()
+    {
+        BWslider.value += 0.1f;
+    }
 
 
     public void sliderRunner()
