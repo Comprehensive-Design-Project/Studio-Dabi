@@ -12,7 +12,6 @@ public class CameraSetting : MonoBehaviour
     void Start()
     {
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        //camera.orthographicSize -= 3;
     }
 
     void Update()
