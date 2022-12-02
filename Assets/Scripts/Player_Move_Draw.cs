@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class Player_Move_Draw : MonoBehaviour
 {
@@ -17,17 +19,23 @@ public class Player_Move_Draw : MonoBehaviour
     bool playerMove = false;
     int index = 0;
     float timer = 0f;
-  
+
+    [Header("UI")]
+    public Scrollbar scrollbar;//스크롤바
+    public Image scroll;
+
     void Awake()
     {
-
+        scroll.fillAmount = stamina;
     }
 
 
     void Update()
     {
+
         if (canClick)
         {
+            scroll.fillAmount = 1;
             drawLine();
         }
         
@@ -53,6 +61,7 @@ public class Player_Move_Draw : MonoBehaviour
             }
 
             MoveToTarget(index);
+
             timer += Time.deltaTime;
 
             if (timer > 0.03f)
@@ -68,26 +77,33 @@ public class Player_Move_Draw : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime * speed);
         stamina -= 50*Time.deltaTime;
 
-        if (stamina > 90)
-        {
-            Debug.Log("90 Upper");
-        }
-        else if (stamina > 70)
-        {
-            Debug.Log("70 Upper");
-        }
-        else if (stamina > 50)
-        {
-            Debug.Log("50 Upper");
-        }
-        else if (stamina > 30)
-        {
-            Debug.Log("30 Upper");
-        }
-        else
-        {
-            Debug.Log("LOW!!");
-        }
+
+        scroll.fillAmount = stamina*0.01f;
+
+        /*        if (stamina > 90)
+                {
+                    Debug.Log("90 Upper");
+                }
+                else if (stamina > 70)
+                {
+                    Debug.Log("70 Upper");
+                }
+                else if (stamina > 50)
+                {
+                    Debug.Log("50 Upper");
+                }
+                else if (stamina > 30&&)
+                {
+                    Debug.Log("30 Upper");
+                }
+                else if (stamina > 30)
+                {
+                    Debug.Log("30 Upper");
+                }
+                else
+                {
+                    Debug.Log("LOW!!");
+                }*/
     }
 
     void ResetVar()
