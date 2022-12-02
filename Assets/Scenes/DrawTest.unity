@@ -4118,6 +4118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   linePrefab: {fileID: 2388301556253569899, guid: cbb50ea0f0ed4314a9c435a6ac3b0def, type: 3}
+  canClick: 1
   scrollbar: {fileID: 458039622}
   scroll: {fileID: 1703243877}
 --- !u!61 &1647600191

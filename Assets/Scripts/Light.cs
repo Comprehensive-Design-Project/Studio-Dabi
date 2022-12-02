@@ -33,6 +33,7 @@ public class Light : MonoBehaviour
     {
         if (isCorutineStart == false)
         {
+            Player_Move_Draw.inst.canClick = true;
             player_light.pointLightOuterRadius = 5f;
             StartCoroutine(LightOff());
         }
@@ -55,6 +56,7 @@ public class Light : MonoBehaviour
         player_light.pointLightOuterRadius = 5f;
         yield return new WaitForSeconds(0.5f);
 
+        Player_Move_Draw.inst.canClick = false;
         isCorutineStart = false;
         gameObject.SetActive(false);
         yield return null;

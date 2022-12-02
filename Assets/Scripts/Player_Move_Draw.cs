@@ -16,7 +16,7 @@ public class Player_Move_Draw : MonoBehaviour
 
     float stamina = 100f;
     bool isOnPlayer = false;
-    bool canClick = true;
+    public bool canClick = true;
     bool playerMove = false;
     int index = 0;
     float timer = 0f;
@@ -34,10 +34,8 @@ public class Player_Move_Draw : MonoBehaviour
         camSet = GameObject.Find("Main Camera").GetComponent<CameraSetting>();
     }
 
-
     void Update()
     {
-
         if (canClick)
         {
             scroll.fillAmount = 1;
