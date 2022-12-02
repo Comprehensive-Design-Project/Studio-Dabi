@@ -8,6 +8,7 @@ public class Player_Move_Draw : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
     public GameObject linePrefab;
+    CameraSetting camSet;
 
     LineRenderer lr;
     EdgeCollider2D col;
@@ -27,6 +28,7 @@ public class Player_Move_Draw : MonoBehaviour
     void Awake()
     {
         scroll.fillAmount = stamina;
+        camSet = GameObject.Find("Main Camera").GetComponent<CameraSetting>();
     }
 
 
@@ -47,6 +49,7 @@ public class Player_Move_Draw : MonoBehaviour
                 playerMove = false;
                 ResetVar();
                 canClick = true;
+                camSet.FreeTrack();
                 return;
             }
 
@@ -57,8 +60,11 @@ public class Player_Move_Draw : MonoBehaviour
                 playerMove = false;
                 ResetVar();
                 canClick = true;
+                camSet.FreeTrack();
                 return;
             }
+
+            //랜덤 이벤트 오브젝트와 충돌하면 정지
 
             MoveToTarget(index);
 
@@ -77,33 +83,7 @@ public class Player_Move_Draw : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime * speed);
         stamina -= 50*Time.deltaTime;
 
-
         scroll.fillAmount = stamina*0.01f;
-
-        /*        if (stamina > 90)
-                {
-                    Debug.Log("90 Upper");
-                }
-                else if (stamina > 70)
-                {
-                    Debug.Log("70 Upper");
-                }
-                else if (stamina > 50)
-                {
-                    Debug.Log("50 Upper");
-                }
-                else if (stamina > 30&&)
-                {
-                    Debug.Log("30 Upper");
-                }
-                else if (stamina > 30)
-                {
-                    Debug.Log("30 Upper");
-                }
-                else
-                {
-                    Debug.Log("LOW!!");
-                }*/
     }
 
     void ResetVar()
@@ -170,6 +150,7 @@ public class Player_Move_Draw : MonoBehaviour
         {
             if (isOnPlayer)
             {
+                camSet.SetTrack();
                 canClick = false;
                 playerMove = true;
                 GameObject line = GameObject.Find("Line(Clone)");

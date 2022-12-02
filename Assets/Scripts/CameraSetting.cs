@@ -5,22 +5,36 @@ using UnityEngine;
 public class CameraSetting : MonoBehaviour
 {
     Camera camera;
+    Transform player;
     Vector3 cameraPos;
     float speed = 5f;
     bool isRightEdge, isLeftEdge, isTopEdge, isBottomEdge = false;
+    bool track = false;
 
     void Start()
     {
         camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        player = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
         cameraPos = camera.transform.position;
-        update_mousePosition();
+        if (track)
+        {
+            Update_playerPosition();
+        }
+        else
+        {
+            Update_mousePosition();
+        }
     }
 
-    void update_mousePosition()
+    void Update_playerPosition()
+    {
+        camera.transform.position = new Vector3(player.position.x, player.position.y, cameraPos.z);
+    }
+    void Update_mousePosition()
     {
         Vector2 mousePos = camera.ScreenToViewportPoint(Input.mousePosition);
 
@@ -80,5 +94,14 @@ public class CameraSetting : MonoBehaviour
         {
             camera.transform.position = new Vector3(cameraPos.x, cameraPos.y - Time.deltaTime * speed, cameraPos.z);
         }       
+    }
+
+    public void SetTrack()
+    {
+        track = true;
+    }
+    public void FreeTrack()
+    {
+        track = false;
     }
 }
