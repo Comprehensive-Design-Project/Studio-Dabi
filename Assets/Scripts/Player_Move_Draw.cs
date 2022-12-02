@@ -5,17 +5,19 @@ using UnityEngine;
 public class Player_Move_Draw : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
-
-    bool isOnPlayer = false;
-    bool canClick = true;
-    
     public GameObject linePrefab;
+
     LineRenderer lr;
     EdgeCollider2D col;
     List<Vector2> points = new List<Vector2>();
 
-    Vector3 mousePos, transPos, targetPos;
-
+    float stamina = 100f;
+    bool isOnPlayer = false;
+    bool canClick = true;
+    bool playerMove = false;
+    int index = 0;
+    float timer = 0f;
+  
     void Awake()
     {
 
@@ -24,34 +26,83 @@ public class Player_Move_Draw : MonoBehaviour
 
     void Update()
     {
-
-        //if (Input.GetMouseButton(0))
-           //CalTargetPos();
-        //MoveToTarget();
         if (canClick)
         {
             drawLine();
         }
         
+        if (playerMove)
+        {
+            if (index > points.Count - 1)
+            {
+                Debug.Log("끝까지 이동 !");
+                playerMove = false;
+                ResetVar();
+                canClick = true;
+                return;
+            }
+
+            //헹동력이 0이 되도 마찬가지
+            if (stamina < 0f)
+            {
+                Debug.Log("스태미나 고갈!");
+                playerMove = false;
+                ResetVar();
+                canClick = true;
+                return;
+            }
+
+            MoveToTarget(index);
+            timer += Time.deltaTime;
+
+            if (timer > 0.03f)
+            { 
+                index++;   
+                timer = 0f;  
+            }
+        }
     }
 
-    void CalTargetPos()
+    void MoveToTarget(int index)
     {
-        mousePos = Input.mousePosition;
-        transPos = Camera.main.ScreenToWorldPoint(mousePos);
-        targetPos = new Vector3(transPos.x, transPos.y, 0);
-    }
-
-    void MoveToTarget()
-    {
+        Vector3 targetPos = new Vector3(points[index].x, points[index].y, 1);
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+        stamina -= 50*Time.deltaTime;
+
+        if (stamina > 90)
+        {
+            Debug.Log("90 Upper");
+        }
+        else if (stamina > 70)
+        {
+            Debug.Log("70 Upper");
+        }
+        else if (stamina > 50)
+        {
+            Debug.Log("50 Upper");
+        }
+        else if (stamina > 30)
+        {
+            Debug.Log("30 Upper");
+        }
+        else
+        {
+            Debug.Log("LOW!!");
+        }
+    }
+
+    void ResetVar()
+    {
+        index = 0;
+        timer = 0f;
+        stamina = 100f;
+        points.Clear();
     }
 
     void drawLine()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            //전제 조건으로 클릭된 것이 캐릭터여야 함
             Vector2 rayPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(rayPos, Vector2.zero);
 
@@ -93,24 +144,10 @@ public class Player_Move_Draw : MonoBehaviour
             if (isOnPlayer)
             {
                 canClick = false;
+                playerMove = true;
                 GameObject line = GameObject.Find("Line(Clone)");
                 Destroy(line);
-                for (int i=0; i < points.Count; i++)
-                {
-                    //행동력이 0이면 break
-                    //이 때는 이동하던 것을 멈추고 그 자리에 서게 해야함
-
-
-                    //문제는 지금 이게 하나의 업데이트 틱 안에서 일어나서 내가 원하는대로 되지 않는다는 것
-                    //움직이는 함수를 손 봐서 버튼이 떼어졌을 때 어떤 부울 변수를 바꿔줘서 업데이트 안에서 이동하게 해야한다.
-                    //이동이 끝나면 배열을 초기화하고 클릭이 가능하도록 풀어주면 된다.
-                    targetPos = new Vector3(points[i].x, points[i].y, 1);
-                    transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
-                }
-
                 isOnPlayer = false;
-                points.Clear();
-                canClick = true;
             }
         }
     }
