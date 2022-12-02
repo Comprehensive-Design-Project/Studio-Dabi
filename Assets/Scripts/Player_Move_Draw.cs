@@ -65,8 +65,7 @@ public class Player_Move_Draw : MonoBehaviour
 
     void MoveToTarget(int index)
     {
-        Vector3 targetPos = new Vector3(points[index].x, points[index].y, 1);
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime * speed);
         stamina -= 50*Time.deltaTime;
 
         if (stamina > 90)
@@ -124,12 +123,24 @@ public class Player_Move_Draw : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            // 그리는 중간에 벽과 충돌하면 그리던 내용이 사라져야함 ( 벽에 안 닿게 그리는 것이 핵심 )
-            //선을 파괴
-            //포인트 배열을 초기화
-            if(isOnPlayer)
+            if (isOnPlayer)
             {
                 Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+
+                if (hit.collider != null)
+                {
+                    if (hit.collider.CompareTag("wall"))
+                    {
+                        GameObject line = GameObject.Find("Line(Clone)");
+                        Destroy(line);
+                        ResetVar();
+                        canClick = true;
+                        isOnPlayer = false;
+                        return;
+                    }
+                }
+
                 if (Vector2.Distance(points[points.Count - 1], pos) > 0.1f)
                 {
                     points.Add(pos);
