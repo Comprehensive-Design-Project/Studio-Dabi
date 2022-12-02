@@ -25,8 +25,11 @@ public class Player_Move_Draw : MonoBehaviour
     public Scrollbar scrollbar;//스크롤바
     public Image scroll;
 
+    public static Player_Move_Draw inst { get; private set; }
+
     void Awake()
     {
+        inst = this;
         scroll.fillAmount = stamina;
         camSet = GameObject.Find("Main Camera").GetComponent<CameraSetting>();
     }
