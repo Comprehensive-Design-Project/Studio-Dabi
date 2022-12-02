@@ -16,7 +16,7 @@ public class Player_Move_Draw : MonoBehaviour
 
     float stamina = 100f;
     bool isOnPlayer = false;
-    public bool canClick = true;
+    bool canClick = true;
     bool playerMove = false;
     int index = 0;
     float timer = 0f;
@@ -32,6 +32,19 @@ public class Player_Move_Draw : MonoBehaviour
         inst = this;
         scroll.fillAmount = stamina;
         camSet = GameObject.Find("Main Camera").GetComponent<CameraSetting>();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Collision");
+        if (collision.gameObject.CompareTag("Event"))
+        {
+            playerMove = false;
+            ResetVar();
+            canClick = true;
+            //카메라를 해제 ?
+            camSet.FreeTrack();
+        }
     }
 
     void Update()
@@ -54,7 +67,6 @@ public class Player_Move_Draw : MonoBehaviour
                 return;
             }
 
-            //헹동력이 0이 되도 마찬가지
             if (stamina < 0f)
             {
                 Debug.Log("스태미나 고갈!");
@@ -64,8 +76,6 @@ public class Player_Move_Draw : MonoBehaviour
                 camSet.FreeTrack();
                 return;
             }
-
-            //랜덤 이벤트 오브젝트와 충돌하면 정지
 
             MoveToTarget(index);
 
