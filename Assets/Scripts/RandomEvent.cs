@@ -32,17 +32,21 @@ public class RandomEvent : MonoBehaviour
     void CallRandomEvent()
     {
         eventID = Random.Range(1,4);
+        
         switch (eventID)
         {
             case 1:
+                Player_Move_Draw.inst.StopMove();
                 Debug.Log("1번 이벤트 발생");
                 StartCoroutine(EventTimer());
                 break;
             case 2:
+                Player_Move_Draw.inst.StopMove();
                 Debug.Log("2번 이벤트 발생");
                 StartCoroutine(EventTimer());
                 break;
             case 3:
+                Player_Move_Draw.inst.StopMove();
                 Debug.Log("3번 이벤트 발생");
                 StartCoroutine(EventTimer());
                 break;

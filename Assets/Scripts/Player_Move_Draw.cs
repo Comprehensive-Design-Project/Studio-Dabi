@@ -34,19 +34,6 @@ public class Player_Move_Draw : MonoBehaviour
         camSet = GameObject.Find("Main Camera").GetComponent<CameraSetting>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collision");
-        if (collision.gameObject.CompareTag("Event"))
-        {
-            playerMove = false;
-            ResetVar();
-            canClick = true;
-            //카메라를 해제 ?
-            camSet.FreeTrack();
-        }
-    }
-
     void Update()
     {
         if (canClick)
@@ -60,20 +47,14 @@ public class Player_Move_Draw : MonoBehaviour
             if (index > points.Count - 1)
             {
                 Debug.Log("끝까지 이동 !");
-                playerMove = false;
-                ResetVar();
-                canClick = true;
-                camSet.FreeTrack();
+                StopMove();
                 return;
             }
 
             if (stamina < 0f)
             {
                 Debug.Log("스태미나 고갈!");
-                playerMove = false;
-                ResetVar();
-                canClick = true;
-                camSet.FreeTrack();
+                StopMove();
                 return;
             }
 
@@ -95,6 +76,13 @@ public class Player_Move_Draw : MonoBehaviour
         stamina -= 50*Time.deltaTime;
 
         scroll.fillAmount = stamina*0.01f;
+    }
+    public void StopMove()
+    {
+        playerMove = false;
+        ResetVar();
+        canClick = true;
+        camSet.FreeTrack();
     }
 
     void ResetVar()
