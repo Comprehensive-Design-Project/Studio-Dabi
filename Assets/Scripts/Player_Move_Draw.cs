@@ -16,7 +16,7 @@ public class Player_Move_Draw : MonoBehaviour
 
     float stamina = 100f;
     bool isOnPlayer = false;
-    bool canClick = true;
+    public bool canClick = true;
     bool playerMove = false;
     int index = 0;
     float timer = 0f;
