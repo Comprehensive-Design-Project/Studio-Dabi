@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class RandomEvent : MonoBehaviour
 {
+    public GameObject player_light;
     int eventID;
     float _timer;
 
     public static RandomEvent inst { get; private set; }
+    void Awake() => inst = this;
+
     private void Start()
     {
         //코루틴 1회 시작
+        StartCoroutine(EventTimer());
+    }
+
+    public void EventCorutine()
+    {
         StartCoroutine(EventTimer());
     }
 
@@ -29,6 +37,7 @@ public class RandomEvent : MonoBehaviour
             CallRandomEvent();
         }
     }
+
     void CallRandomEvent()
     {
         eventID = Random.Range(1,4);
@@ -36,9 +45,9 @@ public class RandomEvent : MonoBehaviour
         switch (eventID)
         {
             case 1:
-                Player_Move_Draw.inst.StopMove();
-                Debug.Log("1번 이벤트 발생");
-                StartCoroutine(EventTimer());
+                Debug.Log("손전등 이벤트 발생");
+                player_light.SetActive(true);
+                player_light.GetComponent<Light>().LightCorutine();
                 break;
             case 2:
                 Player_Move_Draw.inst.StopMove();

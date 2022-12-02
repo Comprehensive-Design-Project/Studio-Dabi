@@ -16,20 +16,10 @@ public class Light : MonoBehaviour
     }
     void Start()
     {
-        if (isCorutineStart == false)
-        {
             player_light.pointLightOuterRadius = 5f;
-            StartCoroutine(LightOff());
-        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void BtnClick()
+    public void LightCorutine()
     {
         if (isCorutineStart == false)
         {
@@ -58,6 +48,7 @@ public class Light : MonoBehaviour
 
         Player_Move_Draw.inst.canClick = false;
         isCorutineStart = false;
+        RandomEvent.inst.EventCorutine();
         gameObject.SetActive(false);
         yield return null;
     }
