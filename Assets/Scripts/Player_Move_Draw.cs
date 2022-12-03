@@ -48,6 +48,7 @@ public class Player_Move_Draw : MonoBehaviour
             {
                 Debug.Log("끝까지 이동 !");
                 StopMove();
+                canClick = true;
                 return;
             }
 
@@ -55,6 +56,7 @@ public class Player_Move_Draw : MonoBehaviour
             {
                 Debug.Log("스태미나 고갈!");
                 StopMove();
+                canClick = true;
                 return;
             }
 
@@ -81,8 +83,6 @@ public class Player_Move_Draw : MonoBehaviour
     {
         playerMove = false;
         ResetVar();
-        canClick = true;
-        camSet.FreeTrack();
     }
 
     void ResetVar()
@@ -91,6 +91,17 @@ public class Player_Move_Draw : MonoBehaviour
         timer = 0f;
         stamina = 100f;
         points.Clear();
+    }
+
+    public void DestroyLine()
+    {
+        GameObject line = GameObject.Find("Line(Clone)");
+        if (line != null)
+        {
+            Destroy(line);
+            ResetVar();
+            isOnPlayer = false;
+        } 
     }
 
     void drawLine()
@@ -127,11 +138,8 @@ public class Player_Move_Draw : MonoBehaviour
                 {
                     if (hit.collider.CompareTag("wall"))
                     {
-                        GameObject line = GameObject.Find("Line(Clone)");
-                        Destroy(line);
-                        ResetVar();
+                        DestroyLine();
                         canClick = true;
-                        isOnPlayer = false;
                         return;
                     }
                 }
@@ -149,7 +157,6 @@ public class Player_Move_Draw : MonoBehaviour
         {
             if (isOnPlayer)
             {
-                camSet.SetTrack();
                 canClick = false;
                 playerMove = true;
                 GameObject line = GameObject.Find("Line(Clone)");

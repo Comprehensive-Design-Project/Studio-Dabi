@@ -10,34 +10,35 @@ public class RandomEvent : MonoBehaviour
     int eventID;
     float _timer;
     float flash_battery;
-    bool isCoffeeMaded = false;
+    bool isCorutineStart = false;
 
     public static RandomEvent inst { get; private set; }
     void Awake() => inst = this;
 
     private void Start()
     {
-        //?????? 1?? ????
         StartCoroutine(EventTimer());
     }
     private void Update()
     {
-        isCoffeeMaded = CoffeeGameSystem.isGameEnd;
         flash_battery = FlashManager.FlashInstance.ChargeState();
         if(flash_battery==100)
             flash_event.SetActive(false);
-        
-        if (isCoffeeMaded)
-            coffee_event.SetActive(false);
     }
 
     public void EventCorutine()
     {
-        StartCoroutine(EventTimer());
+        if (isCorutineStart == false)
+        {
+            Player_Move_Draw.inst.canClick = true;
+            StartCoroutine(EventTimer());
+        }
+        
     }
 
     public IEnumerator EventTimer()
     {
+        isCorutineStart = true;
         _timer = (float)Random.Range(5, 11);
 
         while(_timer > 0)
@@ -48,6 +49,7 @@ public class RandomEvent : MonoBehaviour
 
         if(_timer <= 0)
         {
+            isCorutineStart = false;
             CallRandomEvent();
         }
     }
@@ -59,22 +61,26 @@ public class RandomEvent : MonoBehaviour
         switch (eventID)
         {
             case 1:
-                Debug.Log("?????? ?????? ????");
+                Debug.Log("랜턴 이벤트 발생");
                 player_light.SetActive(true);
                 player_light.GetComponent<Light>().LightCorutine();
                 flash_event.SetActive(true);
                 break;
             case 2:
+                Player_Move_Draw.inst.DestroyLine();
+                Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-                Debug.Log("2?? ?????? ????");
-                coffee_event.SetActive(true);
+                Debug.Log("2번 이벤트 발생");
+                //coffee_event.SetActive(true);
                 //need blocking Click while Coffee Game playing
-                StartCoroutine(EventTimer());
+                EventCorutine();
                 break;
             case 3:
+                Player_Move_Draw.inst.DestroyLine();
+                Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-                Debug.Log("3?? ?????? ????");
-                StartCoroutine(EventTimer());
+                Debug.Log("3번 이벤트 발생");
+                EventCorutine();
                 break;
             default:
                 break;
