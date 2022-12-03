@@ -8,7 +8,8 @@ public class CoffeeGameSystem : MonoBehaviour
     public float BlackWhiteDecreaseValue = 0.0005f;
     public float BlackWhiteIncreaseValue = 0.1f;
     public float ColorBarSpeedValue = 0.001f;
-
+    public GameObject CoffeeSwitch; 
+   
     public static bool isGameEnd = false;
     // Using 6 colors : Red, Orange, Yellow, Green, Blue, Purple
     public GameObject[] patternArray = new GameObject[7];
@@ -246,7 +247,7 @@ public class CoffeeGameSystem : MonoBehaviour
             isGameCompleted = true;
             isGameEnd = true;
             Debug.Log("Good!! Reward Here!!");
-
+            CoffeeSwitch.SetActive(false);
         }
     }
 }
