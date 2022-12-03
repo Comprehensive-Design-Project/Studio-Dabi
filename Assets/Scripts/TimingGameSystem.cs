@@ -8,6 +8,7 @@ public class TimingGameSystem : MonoBehaviour
 {
 
     public float mainSliderSpeed = 0.1f;
+    public int goalScore = 1500;
 
     public Slider mainGameSlider;
     public Slider startValueSlider;
@@ -43,8 +44,8 @@ public class TimingGameSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      startVal = Random.Range(0, 70f);
-      endVal = startVal + Random.Range(20f, 30f);
+      startVal = Random.Range(0, 60f);
+      endVal = startVal + Random.Range(30f, 40f);
       valueRange = endVal - startVal;
         startValueSlider.value = startVal;
         endValueSlider.value = 100f - endVal;
@@ -53,18 +54,19 @@ public class TimingGameSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (howMuchTimeSpended > 3000)
+        if (howMuchTimeSpended >= goalScore)
         {
             Debug.Log("Game Complete!");
             isGameCompleted = true;
             scoreText.color = Color.green;
+            return;
         }
 
         if (!isGameCompleted)
         {
             if (currentValue == 0f || currentValue == 100f)
             {
-                // caution! you are not playing the GAME!!!!
+                // caution! you are not playing the GAME!
                 // if you AFK then game result gonna be FAIL
             }
 
@@ -91,6 +93,17 @@ public class TimingGameSystem : MonoBehaviour
 
     public void whenClick()
     {
-        mainSliderSpeed *= -1f;
+
+        // when speed has selected, value is vaild when only one invert
+        if(mainSliderSpeed > 0f)
+        {
+            mainSliderSpeed *= -1f;
+        }
+        else
+        {
+            mainSliderSpeed = Random.Range(0.1f, 0.2f);
+        }
+
+        
     }
 }
