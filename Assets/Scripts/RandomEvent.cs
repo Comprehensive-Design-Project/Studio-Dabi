@@ -73,6 +73,7 @@ public class RandomEvent : MonoBehaviour
                 break;
             case 3:
                 Player_Move_Draw.inst.StopMove();
+                BatManager.inst.GameStart();
                 Debug.Log("3?? ?????? ????");
                 StartCoroutine(EventTimer());
                 break;

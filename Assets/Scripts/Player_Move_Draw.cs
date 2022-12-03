@@ -8,13 +8,14 @@ public class Player_Move_Draw : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
     public GameObject linePrefab;
-    CameraSetting camSet;
+    public CameraSetting camSet;
 
     LineRenderer lr;
     EdgeCollider2D col;
     List<Vector2> points = new List<Vector2>();
 
     float stamina = 100f;
+    public float maxStamina = 100f;
     bool isOnPlayer = false;
     public bool canClick = true;
     bool playerMove = false;
@@ -89,7 +90,7 @@ public class Player_Move_Draw : MonoBehaviour
     {
         index = 0;
         timer = 0f;
-        stamina = 100f;
+        stamina = maxStamina;
         points.Clear();
     }
 
