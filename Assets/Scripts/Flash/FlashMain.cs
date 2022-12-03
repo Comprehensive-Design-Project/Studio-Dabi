@@ -6,7 +6,11 @@ public enum FlashType
 {
     Top,
     Bottom,
-    Exit
+    Exit,
+    Start,
+    Load,
+    Game,
+    End
 }
 public class FlashMain : MonoBehaviour
 {
