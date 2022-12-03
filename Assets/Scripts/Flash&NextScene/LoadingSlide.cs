@@ -8,7 +8,16 @@ using UnityEngine.SceneManagement;
 public class LoadingSlide : MonoBehaviour
 {
     public Slider progressBar;
+    public GameObject loading;
+    public GameObject loadingComplete;
+    public GameObject nextButton;
 
+    private void Awake()
+    {
+        loadingComplete.SetActive(false);
+        nextButton.SetActive(false);
+        loading.SetActive(true);
+    }
 
     void Start()
     {
@@ -30,11 +39,16 @@ public class LoadingSlide : MonoBehaviour
             else if(operation.progress>=0.9f)
             {
                 progressBar.value = Mathf.MoveTowards(progressBar.value,1f, Time.deltaTime);
+                loading.SetActive(false);
+                loadingComplete.SetActive(true);
+                nextButton.SetActive(true);
             }
            
             if (Input.GetKeyDown(KeyCode.Space) && progressBar.value >= 1f && operation.progress >= 0.9f)
             {
+                
                 operation.allowSceneActivation = true;
+              
                 //SceneManager.LoadScene("DrawTest");
             }
         }
