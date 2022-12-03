@@ -46,7 +46,8 @@ public class FlashManager : MonoBehaviour
 
     public void Charging() // 배터리 양 1% 증가
     {
-        battery += 1;
+        if (battery < 100)
+            battery += 1;
     }
 
     public void Visited()
@@ -66,6 +67,6 @@ public class FlashManager : MonoBehaviour
     }
     void Update()
     {
-        
+       
     }
 }

@@ -5,8 +5,10 @@ using UnityEngine;
 public class RandomEvent : MonoBehaviour
 {
     public GameObject player_light;
+    public GameObject flash_event;
     int eventID;
     float _timer;
+    float flash_battery;
 
     public static RandomEvent inst { get; private set; }
     void Awake() => inst = this;
@@ -15,6 +17,12 @@ public class RandomEvent : MonoBehaviour
     {
         //코루틴 1회 시작
         StartCoroutine(EventTimer());
+    }
+    private void Update()
+    {
+        flash_battery = FlashManager.FlashInstance.ChargeState();
+        if(flash_battery==100)
+            flash_event.SetActive(false);
     }
 
     public void EventCorutine()
@@ -48,6 +56,7 @@ public class RandomEvent : MonoBehaviour
                 Debug.Log("손전등 이벤트 발생");
                 player_light.SetActive(true);
                 player_light.GetComponent<Light>().LightCorutine();
+                flash_event.SetActive(true);
                 break;
             case 2:
                 Player_Move_Draw.inst.StopMove();
