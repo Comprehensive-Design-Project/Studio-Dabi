@@ -76,6 +76,12 @@ public class TimingGameSystem : MonoBehaviour
                 howMuchTimeSpended++;
                 scoreText.text = howMuchTimeSpended.ToString();
             }
+            else
+            {
+                howMuchTimeSpended = 0;
+            }
+
+            //make red-text animation when scores going 0
         }
 
 
