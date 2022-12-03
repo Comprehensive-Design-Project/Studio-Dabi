@@ -8,6 +8,7 @@ public class Tutorial_Text : MonoBehaviour
     private bool secondText=false;
     private bool thirdText=false;
 
+    public GameObject totalObject;
     public GameObject Text1;
     public GameObject Text2;
     public GameObject Text3;
@@ -27,7 +28,7 @@ public class Tutorial_Text : MonoBehaviour
             {
                 thirdText = false;
                 Text3.SetActive(false);
-             
+                Destroy(totalObject);
             }
             if (secondText)
             {
