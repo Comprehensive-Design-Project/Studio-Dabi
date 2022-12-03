@@ -23,8 +23,8 @@ public class Bat : MonoBehaviour
         .InsertCallback(1.0f,() => {
             isFront = true;
         })
-        .Append(transform.DOScale(1f, 1.5f).SetEase(Ease.InElastic))
-        .Join(GetComponent<SpriteRenderer>().DOFade(1, 1.5f))
+        .Append(transform.DOScale(1f, 2f).SetEase(Ease.InElastic))
+        .Join(GetComponent<SpriteRenderer>().DOFade(1, 2f))
         .SetDelay(0.5f)
         .AppendCallback(() => {
             BatManager.inst.StartRed();
