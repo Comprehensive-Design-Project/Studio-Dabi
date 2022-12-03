@@ -4,7 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-public class StartPage : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public enum FlashType
+{
+    Top,
+    Bottom,
+    Exit,
+    Start,
+    Load,
+    Game,
+    End
+}
+
+public class NextScene : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public FlashType nowType;
     public Transform buttonScale;
@@ -33,7 +44,7 @@ public class StartPage : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
     }
     void Update()
     {
-        
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

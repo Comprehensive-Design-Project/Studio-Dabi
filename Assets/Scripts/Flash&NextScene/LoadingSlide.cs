@@ -18,24 +18,24 @@ public class LoadingSlide : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return null;
-        AsyncOperation op = SceneManager.LoadSceneAsync("Game");
-        op.allowSceneActivation = false;
-        while (!op.isDone)
+        AsyncOperation operation = SceneManager.LoadSceneAsync("DrawTest");
+        operation.allowSceneActivation = false;
+        while (!operation.isDone)
         {
             yield return null;
             if (progressBar.value < 0.9f)
             {
                 progressBar.value = Mathf.MoveTowards(progressBar.value, 0.9f,Time.deltaTime/2);
             }
-            else if(op.progress>=0.9f)
+            else if(operation.progress>=0.9f)
             {
                 progressBar.value = Mathf.MoveTowards(progressBar.value,1f, Time.deltaTime);
             }
            
-            if (Input.GetKeyDown(KeyCode.Space) && progressBar.value >= 1f && op.progress >= 0.9f)
+            if (Input.GetKeyDown(KeyCode.Space) && progressBar.value >= 1f && operation.progress >= 0.9f)
             {
-                op.allowSceneActivation = true;
-                SceneManager.LoadScene("Game");
+                operation.allowSceneActivation = true;
+                //SceneManager.LoadScene("DrawTest");
             }
         }
         /*op.isDone;
