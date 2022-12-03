@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class CoffeeGameSystem : MonoBehaviour
 {
+    public float BlackWhiteDecreaseValue = 0.0005f;
+    public float BlackWhiteIncreaseValue = 0.1f;
+    public float ColorBarSpeedValue = 0.001f;
+
     public static bool isGameEnd = false;
     // Using 6 colors : Red, Orange, Yellow, Green, Blue, Purple
     public GameObject[] patternArray = new GameObject[7];
@@ -147,7 +151,7 @@ public class CoffeeGameSystem : MonoBehaviour
     void Update()
     {
 
-        BWslider.value -= 0.0005f;
+        BWslider.value -= BlackWhiteDecreaseValue;
         if(BWslider.value >= 0.5f)
         {
             answerPatternTile.GetComponent<Outline>().effectColor = Color.white;
@@ -156,9 +160,12 @@ public class CoffeeGameSystem : MonoBehaviour
         {
             answerPatternTile.GetComponent<Outline>().effectColor = Color.black;
         }
-        // space를 누르면 채점을 시작한다.
-        if (Input.GetKeyDown(KeyCode.Space))
+        // 아무키나 누르면 채점을 시작 한다. 마우스 클릭 빼고!
+        if (Input.anyKeyDown)
         {
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+                return;
+
             scoring();
         }
 
@@ -171,7 +178,7 @@ public class CoffeeGameSystem : MonoBehaviour
 
     public void getUP()
     {
-        BWslider.value += 0.1f;
+        BWslider.value += BlackWhiteIncreaseValue;
     }
 
 
@@ -185,7 +192,7 @@ public class CoffeeGameSystem : MonoBehaviour
         
         if (targetSlider.value < 1f)
         {
-            targetSlider.value += 0.0009f;
+            targetSlider.value += ColorBarSpeedValue;
             
         }
         else
