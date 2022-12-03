@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CoffeeGameSystem : MonoBehaviour
 {
+    public static bool isGameEnd = false;
     // Using 6 colors : Red, Orange, Yellow, Green, Blue, Purple
     public GameObject[] patternArray = new GameObject[7];
     public Color[] colorArray = new Color[6];
@@ -26,6 +27,16 @@ public class CoffeeGameSystem : MonoBehaviour
     public Color playerColorSelection;
 
     // Start is called before the first frame update
+
+    void OnEnable()
+    {
+        //Game Initialize
+        isGameCompleted = false;
+        isGameEnd = false;
+        answerSelector = 0;
+        Start();
+    }
+
     void Start()
     {
         BWArray[0] = Color.black;
@@ -226,6 +237,7 @@ public class CoffeeGameSystem : MonoBehaviour
         if (answerSelector >= 7)
         {
             isGameCompleted = true;
+            isGameEnd = true;
             Debug.Log("Good!! Reward Here!!");
 
         }

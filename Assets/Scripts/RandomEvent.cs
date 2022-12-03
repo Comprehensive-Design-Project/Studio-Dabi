@@ -6,23 +6,29 @@ public class RandomEvent : MonoBehaviour
 {
     public GameObject player_light;
     public GameObject flash_event;
+    public GameObject coffee_event;
     int eventID;
     float _timer;
     float flash_battery;
+    bool isCoffeeMaded = false;
 
     public static RandomEvent inst { get; private set; }
     void Awake() => inst = this;
 
     private void Start()
     {
-        //코루틴 1회 시작
+        //?????? 1?? ????
         StartCoroutine(EventTimer());
     }
     private void Update()
     {
+        isCoffeeMaded = CoffeeGameSystem.isGameEnd;
         flash_battery = FlashManager.FlashInstance.ChargeState();
         if(flash_battery==100)
             flash_event.SetActive(false);
+        
+        if (isCoffeeMaded)
+            coffee_event.SetActive(false);
     }
 
     public void EventCorutine()
@@ -53,19 +59,21 @@ public class RandomEvent : MonoBehaviour
         switch (eventID)
         {
             case 1:
-                Debug.Log("손전등 이벤트 발생");
+                Debug.Log("?????? ?????? ????");
                 player_light.SetActive(true);
                 player_light.GetComponent<Light>().LightCorutine();
                 flash_event.SetActive(true);
                 break;
             case 2:
                 Player_Move_Draw.inst.StopMove();
-                Debug.Log("2번 이벤트 발생");
+                Debug.Log("2?? ?????? ????");
+                coffee_event.SetActive(true);
+                //need blocking Click while Coffee Game playing
                 StartCoroutine(EventTimer());
                 break;
             case 3:
                 Player_Move_Draw.inst.StopMove();
-                Debug.Log("3번 이벤트 발생");
+                Debug.Log("3?? ?????? ????");
                 StartCoroutine(EventTimer());
                 break;
             default:
