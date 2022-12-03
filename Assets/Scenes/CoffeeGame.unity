@@ -5207,6 +5207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ebfdc81fe80405c8b79fe7756c9889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlackWhiteDecreaseValue: 0.0005
+  BlackWhiteIncreaseValue: 0.1
+  ColorBarSpeedValue: 0.001
+  CoffeeSwitch: {fileID: 1801529109}
   patternArray:
   - {fileID: 1480262609}
   - {fileID: 2114010992}
@@ -10650,6 +10654,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ebfdc81fe80405c8b79fe7756c9889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlackWhiteDecreaseValue: 0.0005
+  BlackWhiteIncreaseValue: 0.1
+  ColorBarSpeedValue: 0.001
+  CoffeeSwitch: {fileID: 0}
   patternArray:
   - {fileID: 263771138}
   - {fileID: 1557314201}

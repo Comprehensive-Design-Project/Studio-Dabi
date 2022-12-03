@@ -46,7 +46,13 @@ public class Light : MonoBehaviour
         player_light.pointLightOuterRadius = 5f;
         yield return new WaitForSeconds(0.5f);
 
+        //선을 그리는 중이라면 선을 제거, 클릭 막음
+        //이동 중이라면 선 부수는 건 그냥 넘어가고 이미 false지만 또 fasle해주고
+        //이동 중지
+        Player_Move_Draw.inst.DestroyLine();
         Player_Move_Draw.inst.canClick = false;
+        Player_Move_Draw.inst.StopMove();
+
         isCorutineStart = false;
         RandomEvent.inst.EventCorutine();
         gameObject.SetActive(false);
