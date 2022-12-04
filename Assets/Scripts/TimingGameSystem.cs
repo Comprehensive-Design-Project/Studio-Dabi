@@ -14,6 +14,8 @@ public class TimingGameSystem : MonoBehaviour
     public Slider startValueSlider;
     public Slider endValueSlider;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI indicateScoreText;
+    public GameObject TimingGameAdmin;
 
     float startVal;
     float endVal;
@@ -38,6 +40,8 @@ public class TimingGameSystem : MonoBehaviour
         howMuchTimeSpended = 0;
         startValueSlider.value = 0f;
         endValueSlider.value = 100f;
+        goalScore = Random.Range(1500, 2500);
+        indicateScoreText.text = "/" + goalScore.ToString();
         Start();
     }
 
@@ -59,6 +63,8 @@ public class TimingGameSystem : MonoBehaviour
             Debug.Log("Game Complete!");
             isGameCompleted = true;
             scoreText.color = Color.green;
+            TimingGameAdmin.SetActive(false);
+            // need : setActive false after 3 seconds
             return;
         }
 
@@ -85,6 +91,7 @@ public class TimingGameSystem : MonoBehaviour
 
             //make red-text animation when scores going 0
         }
+            
 
 
 

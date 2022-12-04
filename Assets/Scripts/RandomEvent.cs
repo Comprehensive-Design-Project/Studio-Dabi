@@ -7,6 +7,7 @@ public class RandomEvent : MonoBehaviour
     public GameObject player_light;
     public GameObject off_flahsEvent;
     public GameObject coffee_event;
+    public GameObject timing_event;
     int eventID;
     float _timer;
 
@@ -64,22 +65,24 @@ public class RandomEvent : MonoBehaviour
         {
             case 1:
                 player_light.SetActive(true);
-                FlashManager.FlashInstance.GaugeInit(); // battery gauge를 다시 0으로 초기화
+                FlashManager.FlashInstance.GaugeInit(); // battery gauge?? ???? 0???? ??????
                 player_light.GetComponent<Light>().LightCorutine();
                 break;
             case 2:
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-                //coffee_event.SetActive(true);
-                //need blocking Click while Coffee Game playing
-                EventCorutine();
+                coffee_event.SetActive(true);
+
+                //EventCorutine();
                 break;
             case 3:
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-                EventCorutine();
+
+                timing_event.SetActive(true);
+                //EventCorutine();
                 break;
             default:
                 break;
