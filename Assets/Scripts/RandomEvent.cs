@@ -5,13 +5,13 @@ using UnityEngine;
 public class RandomEvent : MonoBehaviour
 {
     public GameObject player_light;
-    
+    public GameObject off_flahsEvent;
     public GameObject coffee_event;
     int eventID;
     float _timer;
- 
-    bool isCorutineStart = false;
 
+    bool isCorutineStart = false;
+    
     public static RandomEvent inst { get; private set; }
     void Awake() => inst = this;
 
@@ -21,7 +21,11 @@ public class RandomEvent : MonoBehaviour
     }
     private void Update()
     {
-       
+       if (FlashManager.FlashInstance.ChargeState() >= 95)
+        {
+            off_flahsEvent.SetActive(false);
+            player_light.SetActive(true);
+        }
     }
 
     public void EventCorutine()
@@ -59,8 +63,8 @@ public class RandomEvent : MonoBehaviour
         {
             case 1:
                 player_light.SetActive(true);
+                FlashManager.FlashInstance.GaugeInit(); // battery gauge를 다시 0으로 초기화
                 player_light.GetComponent<Light>().LightCorutine();
-               
                 break;
             case 2:
                 Player_Move_Draw.inst.DestroyLine();

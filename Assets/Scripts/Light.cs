@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class Light : MonoBehaviour
 {
     public Light2D player_light;
+    public GameObject shake_event;
 
     bool isCorutineStart;
 
@@ -66,6 +67,7 @@ public class Light : MonoBehaviour
         isCorutineStart = false;
         RandomEvent.inst.EventCorutine();
         gameObject.SetActive(false);
+        shake_event.SetActive(true);
         yield return null;
     }
 

@@ -6,7 +6,7 @@ public class FlashManager : MonoBehaviour
 {
   
     private static FlashManager flashInstance;
-    public GameObject light_evented;
+    
     public static FlashManager FlashInstance {
         get
         {
@@ -48,7 +48,7 @@ public class FlashManager : MonoBehaviour
     public void Charging() // 배터리 양 1% 증가
     {
         if (battery < 100)
-            battery += 1;
+            battery += 5;
     }
 
     public void Visited()
@@ -61,12 +61,16 @@ public class FlashManager : MonoBehaviour
         else
             isVisted = true;
     }
-
+    
+    public void GaugeInit()
+    {
+        battery = 0;
+    }
     public void GaugeDown()
     {
-        battery -= 0.5;
-        if (battery > 0)
-            Invoke("GaugeDown", 0.1f);
+        //battery -= 0.5;
+       // if (battery > 0)
+            //Invoke("GaugeDown", 0.1f);
     }
     void Start()
     {
@@ -74,13 +78,6 @@ public class FlashManager : MonoBehaviour
     }
     void Update()
     {
-        if (battery <= 0)
-            light_evented.SetActive(true);
-        else if (battery >= 100)
-        {
-            light_evented.SetActive(false);
-            GaugeDown();
-        }
-           
+
     }
 }
