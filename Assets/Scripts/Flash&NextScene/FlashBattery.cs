@@ -7,8 +7,8 @@ public class FlashBattery : MonoBehaviour
 {
     [SerializeField] private Slider BatterGauge;
 
-    private float gaugeMax = 100;
-    private float curGauge;
+    private double gaugeMax = 100;
+    private double curGauge;
     
     void Start()
     {

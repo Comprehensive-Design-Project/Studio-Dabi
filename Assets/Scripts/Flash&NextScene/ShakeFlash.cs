@@ -6,8 +6,8 @@ public class ShakeFlash : MonoBehaviour
 {
     private float shakeTime;
     private float shakeIntensity;
-    private float shakeCnt=0;
-    private float currentCnt=1;
+    private double shakeCnt =0;
+    private double currentCnt =1;
 
     void Start()
     {

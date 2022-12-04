@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class Light : MonoBehaviour
 {
     public Light2D player_light;
+
     bool isCorutineStart;
 
     // Start is called before the first frame update
@@ -13,11 +14,19 @@ public class Light : MonoBehaviour
     private void Awake()
     {
         isCorutineStart = false;
+        
     }
     void Start()
     {
             player_light.pointLightOuterRadius = 5f;
     }
+
+    void Update()
+    {
+       
+    }
+
+   
 
     public void LightCorutine()
     {
@@ -28,6 +37,7 @@ public class Light : MonoBehaviour
             StartCoroutine(LightOff());
         }
     }
+
 
     IEnumerator LightOff()
     {
@@ -58,4 +68,6 @@ public class Light : MonoBehaviour
         gameObject.SetActive(false);
         yield return null;
     }
+
+
 }

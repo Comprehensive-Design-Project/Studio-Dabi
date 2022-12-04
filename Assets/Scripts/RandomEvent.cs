@@ -5,11 +5,11 @@ using UnityEngine;
 public class RandomEvent : MonoBehaviour
 {
     public GameObject player_light;
-    public GameObject flash_event;
+    
     public GameObject coffee_event;
     int eventID;
     float _timer;
-    float flash_battery;
+ 
     bool isCorutineStart = false;
 
     public static RandomEvent inst { get; private set; }
@@ -21,9 +21,7 @@ public class RandomEvent : MonoBehaviour
     }
     private void Update()
     {
-        flash_battery = FlashManager.FlashInstance.ChargeState();
-        if(flash_battery==100)
-            flash_event.SetActive(false);
+       
     }
 
     public void EventCorutine()
@@ -62,7 +60,7 @@ public class RandomEvent : MonoBehaviour
             case 1:
                 player_light.SetActive(true);
                 player_light.GetComponent<Light>().LightCorutine();
-                flash_event.SetActive(true);
+               
                 break;
             case 2:
                 Player_Move_Draw.inst.DestroyLine();
