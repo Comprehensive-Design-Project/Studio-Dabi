@@ -8,6 +8,7 @@ public class RandomEvent : MonoBehaviour
     public GameObject off_flahsEvent;
     public GameObject coffee_event;
     public GameObject timing_event;
+    public bool isTutoEnd = false;
     int eventID;
     float _timer;
 
