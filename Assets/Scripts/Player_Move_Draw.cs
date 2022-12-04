@@ -65,7 +65,7 @@ public class Player_Move_Draw : MonoBehaviour
 
             timer += Time.deltaTime;
 
-            if (timer > 0.03f)
+            if (timer > 20*Time.deltaTime)
             { 
                 index++;   
                 timer = 0f;  
@@ -75,7 +75,7 @@ public class Player_Move_Draw : MonoBehaviour
 
     void MoveToTarget(int index)
     {
-        transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime * speed);
+        transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime*speed);
         stamina -= 50*Time.deltaTime;
 
         scroll.fillAmount = stamina*0.01f;
