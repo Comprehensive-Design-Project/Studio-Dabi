@@ -25,6 +25,7 @@ public class RandomEvent : MonoBehaviour
         {
             off_flahsEvent.SetActive(false);
             player_light.SetActive(true);
+            EventCorutine();
         }
     }
 

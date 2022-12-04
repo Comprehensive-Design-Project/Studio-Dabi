@@ -65,7 +65,7 @@ public class Light : MonoBehaviour
         Player_Move_Draw.inst.StopMove();
 
         isCorutineStart = false;
-        RandomEvent.inst.EventCorutine();
+        //RandomEvent.inst.EventCorutine();
         gameObject.SetActive(false);
         shake_event.SetActive(true);
         yield return null;
