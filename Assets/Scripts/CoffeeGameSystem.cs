@@ -247,9 +247,11 @@ public class CoffeeGameSystem : MonoBehaviour
             isGameCompleted = true;
             isGameEnd = true;
 
-            Player_Move_Draw.inst.canClick = true;
             Debug.Log("Good!! Reward Here!!");
+            RandomEvent.inst.isCorutineStart = false;
+            RandomEvent.inst.EventCorutine();
             CoffeeSwitch.SetActive(false);
+            
         }
     }
 

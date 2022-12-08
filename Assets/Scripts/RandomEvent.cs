@@ -12,21 +12,23 @@ public class RandomEvent : MonoBehaviour
     int eventID;
     float _timer;
 
-    bool isCorutineStart = false;
+    public bool isCorutineStart = false;
     
     public static RandomEvent inst { get; private set; }
     void Awake() => inst = this;
 
     private void Start()
     {
-        StartCoroutine(EventTimer());
+        //StartCoroutine(EventTimer());
     }
     private void Update()
     {
        if (FlashManager.FlashInstance.ChargeState() >= 95)
         {
+            FlashManager.FlashInstance.battery = 0;
             off_flahsEvent.SetActive(false);
             player_light.SetActive(true);
+            isCorutineStart = false;
             EventCorutine();
         }
     }
@@ -53,13 +55,13 @@ public class RandomEvent : MonoBehaviour
 
         if(_timer <= 0)
         {
-            isCorutineStart = false;
             CallRandomEvent();
         }
     }
 
     void CallRandomEvent()
     {
+        //박쥐 이벤트 추가 시 1,4 -> 1,5로 변경 바람
         eventID = Random.Range(1,4);
 
         switch (eventID)
@@ -74,14 +76,18 @@ public class RandomEvent : MonoBehaviour
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
                 coffee_event.SetActive(true);
-                //EventCorutine();
                 break;
             case 3:
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
                 timing_event.SetActive(true);
-                //EventCorutine();
+                break;
+            case 4:
+                //Player_Move_Draw.inst.DestroyLine();
+                //Player_Move_Draw.inst.canClick = false;
+                //Player_Move_Draw.inst.StopMove();
+                //Bat Event
                 break;
             default:
                 break;

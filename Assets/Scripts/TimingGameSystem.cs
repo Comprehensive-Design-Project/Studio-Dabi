@@ -63,8 +63,11 @@ public class TimingGameSystem : MonoBehaviour
             Debug.Log("Game Complete!");
             isGameCompleted = true;
             scoreText.color = Color.green;
+
+            RandomEvent.inst.isCorutineStart = false;
+            RandomEvent.inst.EventCorutine();
+
             TimingGameAdmin.SetActive(false);
-            
             // need : setActive false after 3 seconds
             return;
         }

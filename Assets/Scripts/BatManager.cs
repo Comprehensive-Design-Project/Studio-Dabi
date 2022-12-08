@@ -65,6 +65,10 @@ public class BatManager : MonoBehaviour
             StartCoroutine(DecreaseStamina(clickCount*5));
 
         numList.Clear();
+
+        RandomEvent.inst.isCorutineStart = false;
+        RandomEvent.inst.EventCorutine();
+
         batGame.SetActive(false);
     }
 

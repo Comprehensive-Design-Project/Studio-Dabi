@@ -18,11 +18,11 @@ public class FlashManager : MonoBehaviour
         }
     }
     private bool isVisted; // 위에 방문했을 땐 true, 아래 방문했을 땐 false를 반환
-    private double battery; // 배터리 양 
+    public double battery; // 배터리 양 
 
     private void Awake()
     {
-        battery = 100;
+        battery = 0;
         isVisted = false;
         if (flashInstance == null)
         {
