@@ -74,14 +74,12 @@ public class RandomEvent : MonoBehaviour
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
                 coffee_event.SetActive(true);
-
                 //EventCorutine();
                 break;
             case 3:
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-
                 timing_event.SetActive(true);
                 //EventCorutine();
                 break;

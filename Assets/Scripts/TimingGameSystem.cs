@@ -64,6 +64,7 @@ public class TimingGameSystem : MonoBehaviour
             isGameCompleted = true;
             scoreText.color = Color.green;
             TimingGameAdmin.SetActive(false);
+            
             // need : setActive false after 3 seconds
             return;
         }
