@@ -6,8 +6,8 @@ public class RandomEvent : MonoBehaviour
 {
     public GameObject player_light;
     public GameObject off_flahsEvent;
-    public GameObject coffee_event;
-    public GameObject timing_event;
+    public GameObject coffee_refine_event;
+    public GameObject coffee_shake_event;
     public bool isTutoEnd = false;
     int eventID;
     float _timer;
@@ -61,7 +61,7 @@ public class RandomEvent : MonoBehaviour
 
     void CallRandomEvent()
     {
-        //박쥐 이벤트 추가 시 1,4 -> 1,5로 변경 바람
+        //???? ?????? ???? ?? 1,4 -> 1,5?? ???? ????
         eventID = Random.Range(1,4);
 
         switch (eventID)
@@ -75,13 +75,13 @@ public class RandomEvent : MonoBehaviour
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-                coffee_event.SetActive(true);
+                coffee_refine_event.SetActive(true);
                 break;
             case 3:
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
                 Player_Move_Draw.inst.StopMove();
-                timing_event.SetActive(true);
+                coffee_shake_event.SetActive(true);
                 break;
             case 4:
                 //Player_Move_Draw.inst.DestroyLine();
