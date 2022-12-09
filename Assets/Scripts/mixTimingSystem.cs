@@ -67,6 +67,8 @@ public class mixTimingSystem : MonoBehaviour
 
         if (correctCount >= 7)
         {
+            RandomEvent.inst.isCorutineStart = false;
+            RandomEvent.inst.EventCorutine();
             gameAdmin.SetActive(false);
         }
 

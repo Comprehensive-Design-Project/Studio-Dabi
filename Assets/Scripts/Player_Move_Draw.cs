@@ -48,7 +48,6 @@ public class Player_Move_Draw : MonoBehaviour
         {
             if (index > points.Count - 1)
             {
-                Debug.Log("������ �̵� !");
                 StopMove();
                 canClick = true;
                 return;
@@ -56,7 +55,6 @@ public class Player_Move_Draw : MonoBehaviour
 
             if (stamina < 0f)
             {
-                Debug.Log("���¹̳� ����!");
                 StopMove();
                 canClick = true;
                 return;
@@ -76,7 +74,6 @@ public class Player_Move_Draw : MonoBehaviour
 
     void MoveToTarget(int index)
     {
-        //transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime*speed);
         transform.DOMove(points[index], 0.35f).SetEase(Ease.Linear);
         stamina -= 50*Time.deltaTime;
         scroll.fillAmount = stamina*0.01f;

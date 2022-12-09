@@ -17,10 +17,6 @@ public class RandomEvent : MonoBehaviour
     public static RandomEvent inst { get; private set; }
     void Awake() => inst = this;
 
-    private void Start()
-    {
-        //StartCoroutine(EventTimer());
-    }
     private void Update()
     {
        if (FlashManager.FlashInstance.ChargeState() >= 95)
@@ -61,14 +57,13 @@ public class RandomEvent : MonoBehaviour
 
     void CallRandomEvent()
     {
-        //???? ?????? ???? ?? 1,4 -> 1,5?? ???? ????
         eventID = Random.Range(1,5);
 
         switch (eventID)
         {
             case 1:
                 player_light.SetActive(true);
-                FlashManager.FlashInstance.GaugeInit(); // battery gauge?? ???? 0???? ??????
+                FlashManager.FlashInstance.GaugeInit();
                 player_light.GetComponent<Light>().LightCorutine();
                 break;
             case 2:

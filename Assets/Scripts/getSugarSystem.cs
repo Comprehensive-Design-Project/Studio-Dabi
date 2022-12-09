@@ -67,6 +67,8 @@ public class getSugarSystem : MonoBehaviour
     {
         if(correctCount == 15)
         {
+            RandomEvent.inst.isCorutineStart = false;
+            RandomEvent.inst.EventCorutine();
             gameAdminObj.SetActive(false);
         }
 
