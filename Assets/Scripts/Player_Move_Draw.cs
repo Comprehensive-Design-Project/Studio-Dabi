@@ -75,7 +75,7 @@ public class Player_Move_Draw : MonoBehaviour
     void MoveToTarget(int index)
     {
         transform.DOMove(points[index], 0.35f).SetEase(Ease.Linear);
-        stamina -= 50*Time.deltaTime;
+        stamina -= 65*Time.deltaTime;
         scroll.fillAmount = stamina*0.01f;
     }
     public void StopMove()

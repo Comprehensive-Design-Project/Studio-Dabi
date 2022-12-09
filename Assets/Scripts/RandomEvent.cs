@@ -41,7 +41,7 @@ public class RandomEvent : MonoBehaviour
     public IEnumerator EventTimer()
     {
         isCorutineStart = true;
-        _timer = (float)Random.Range(5, 11);
+        _timer = (float)Random.Range(20, 41);
 
         while(_timer > 0)
         {
