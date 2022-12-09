@@ -15,6 +15,7 @@ TagManager:
   - UI
   - Player
   - Line
+  - Tutorial_Exit
   - 
   - 
   - 
@@ -36,9 +37,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - chat_1
+  - chat_2
   m_SortingLayers:
   - name: Default
     uniqueID: 0

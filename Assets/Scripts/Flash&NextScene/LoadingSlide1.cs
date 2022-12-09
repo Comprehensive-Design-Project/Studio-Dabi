@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class LoadingSlide : MonoBehaviour
+public class LoadingSlide1 : MonoBehaviour
 {
     public Slider progressBar;
     public GameObject loading;
@@ -21,34 +21,34 @@ public class LoadingSlide : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(LoadScene());   
+        StartCoroutine(LoadScene());
     }
 
     IEnumerator LoadScene()
     {
         yield return null;
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Tutorial");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("DrawTest");
         operation.allowSceneActivation = false;
         while (!operation.isDone)
         {
             yield return null;
             if (progressBar.value < 0.9f)
             {
-                progressBar.value = Mathf.MoveTowards(progressBar.value, 0.9f,Time.deltaTime/3);
+                progressBar.value = Mathf.MoveTowards(progressBar.value, 0.9f, Time.deltaTime / 3);
             }
-            else if(operation.progress>=0.9f)
+            else if (operation.progress >= 0.9f)
             {
-                progressBar.value = Mathf.MoveTowards(progressBar.value,1f, Time.deltaTime);
+                progressBar.value = Mathf.MoveTowards(progressBar.value, 1f, Time.deltaTime);
                 loading.SetActive(false);
                 loadingComplete.SetActive(true);
                 nextButton.SetActive(true);
             }
-           
+
             if (Input.GetKeyDown(KeyCode.Space) && progressBar.value >= 1f && operation.progress >= 0.9f)
             {
-                
+
                 operation.allowSceneActivation = true;
-              
+
                 //SceneManager.LoadScene("DrawTest");
             }
         }

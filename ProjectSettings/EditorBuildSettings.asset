@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Loading.unity
     guid: 0861012371b5ca4459a10772a960b175
   - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 4912ccb11de87834c861b9f692b42cf5
+  - enabled: 1
+    path: Assets/Scenes/Loading 1.unity
+    guid: 2ec41d14e15ec144ba4ea6b6bb36e050
+  - enabled: 1
     path: Assets/Scenes/DrawTest.unity
     guid: ec2a421d2ac570a4ea26d7bd9fc544e8
   - enabled: 1

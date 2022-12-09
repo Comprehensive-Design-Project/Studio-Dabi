@@ -169,3 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   linePrefab: {fileID: 2388301556253569899, guid: cbb50ea0f0ed4314a9c435a6ac3b0def, type: 3}
+  camSet: {fileID: 0}
+  maxStamina: 100
+  canClick: 1
+  scrollbar: {fileID: 0}
+  scroll: {fileID: 0}
