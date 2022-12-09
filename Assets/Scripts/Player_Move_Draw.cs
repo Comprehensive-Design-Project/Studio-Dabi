@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 public class Player_Move_Draw : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class Player_Move_Draw : MonoBehaviour
     float timer = 0f;
 
     [Header("UI")]
-    public Scrollbar scrollbar;//½ºÅ©·Ñ¹Ù
+    public Scrollbar scrollbar;//ï¿½ï¿½Å©ï¿½Ñ¹ï¿½
     public Image scroll;
 
     public static Player_Move_Draw inst { get; private set; }
@@ -47,7 +48,7 @@ public class Player_Move_Draw : MonoBehaviour
         {
             if (index > points.Count - 1)
             {
-                Debug.Log("³¡±îÁö ÀÌµ¿ !");
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ !");
                 StopMove();
                 canClick = true;
                 return;
@@ -55,7 +56,7 @@ public class Player_Move_Draw : MonoBehaviour
 
             if (stamina < 0f)
             {
-                Debug.Log("½ºÅÂ¹Ì³ª °í°¥!");
+                Debug.Log("ï¿½ï¿½ï¿½Â¹Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½!");
                 StopMove();
                 canClick = true;
                 return;
@@ -67,17 +68,17 @@ public class Player_Move_Draw : MonoBehaviour
 
             if (timer > 20*Time.deltaTime)
             { 
-                index++;   
-                timer = 0f;  
+                index++;
+                timer = 0f;
             }
         }
     }
 
     void MoveToTarget(int index)
     {
-        transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime*speed);
+        //transform.position = Vector3.MoveTowards(transform.position, points[index], Time.deltaTime*speed);
+        transform.DOMove(points[index], 0.35f).SetEase(Ease.Linear);
         stamina -= 50*Time.deltaTime;
-
         scroll.fillAmount = stamina*0.01f;
     }
     public void StopMove()

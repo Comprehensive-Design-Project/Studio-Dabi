@@ -62,7 +62,7 @@ public class RandomEvent : MonoBehaviour
     void CallRandomEvent()
     {
         //???? ?????? ???? ?? 1,4 -> 1,5?? ???? ????
-        eventID = Random.Range(1,4);
+        eventID = Random.Range(1,5);
 
         switch (eventID)
         {
@@ -84,10 +84,11 @@ public class RandomEvent : MonoBehaviour
                 coffee_shake_event.SetActive(true);
                 break;
             case 4:
-                //Player_Move_Draw.inst.DestroyLine();
-                //Player_Move_Draw.inst.canClick = false;
-                //Player_Move_Draw.inst.StopMove();
-                //Bat Event
+                Player_Move_Draw.inst.DestroyLine();
+                Player_Move_Draw.inst.canClick = false;
+                Player_Move_Draw.inst.StopMove();
+                BatManager.inst.InvokeGame();
+
                 break;
             default:
                 break;

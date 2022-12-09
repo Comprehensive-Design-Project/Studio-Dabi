@@ -72,6 +72,11 @@ public class BatManager : MonoBehaviour
         batGame.SetActive(false);
     }
 
+    public void InvokeGame()
+    {
+        Invoke("GameStart", 1f);
+    }
+
     public void GameStart()
     {
         Vector3 vec = Player_Move_Draw.inst.camSet.transform.position;
