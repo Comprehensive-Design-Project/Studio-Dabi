@@ -40,8 +40,8 @@ public class NextScene : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
                 SceneManager.LoadScene("Ending");
                 break;
         }
-
     }
+
     void Update()
     {
 
