@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip batSound;
     public AudioClip hitSound;
     public AudioClip attackSound;
+    public AudioClip rockSound;
 
 
     public static SoundManager inst { get; private set; }
@@ -43,5 +44,10 @@ public class SoundManager : MonoBehaviour
     public void PlayAttack()
     {
         audioSource.PlayOneShot(attackSound);
+    }
+
+    public void PlayRock()
+    {
+        audioSource.PlayOneShot(rockSound);
     }
 }

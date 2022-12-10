@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndingTrigger : MonoBehaviour
 {
@@ -10,8 +11,7 @@ public class EndingTrigger : MonoBehaviour
         {
             if(RandomEvent.inst.isTutoEnd)
             {
-                //엔딩으로
-                Debug.Log("엔딩으로 갑니다.");
+                SceneManager.LoadScene("Ending");
             }
         }
     }

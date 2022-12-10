@@ -8,6 +8,8 @@ public class EventStartTrigger : MonoBehaviour
     public GameObject rock_ending;
     [SerializeField]
     public GameObject rock_blocking;
+    [SerializeField]
+    public GameObject textUI;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,8 +20,20 @@ public class EventStartTrigger : MonoBehaviour
                 RandomEvent.inst.isTutoEnd = true;
                 rock_ending.SetActive(false);
                 rock_blocking.SetActive(true);
+                SoundManager.inst.PlayRock();
+                textUI.SetActive(true);
+                StartCoroutine(CloseText());
                 StartCoroutine(RandomEvent.inst.EventTimer());
             }
         }
+    }
+
+    public IEnumerator CloseText()
+    {
+
+        yield return new WaitForSeconds(4f);
+        textUI.SetActive(false);
+        yield return null;
+        
     }
 }
