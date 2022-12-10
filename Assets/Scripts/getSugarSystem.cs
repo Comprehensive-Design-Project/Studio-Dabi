@@ -10,6 +10,7 @@ public class getSugarSystem : MonoBehaviour
     public GameObject[] patternViewer = new GameObject[15];
     public State[] patternArray = new State[15];
     public RawImage strainerImage;
+    public AudioSource audioSource;
 
     public GameObject gameAdminObj;
 
@@ -22,7 +23,8 @@ public class getSugarSystem : MonoBehaviour
 
     void OnEnable()
     {
-        for(int i = 0; i < 15; i++)
+        audioSource = this.GetComponent<AudioSource>();
+        for (int i = 0; i < 15; i++)
         {
             patternViewer[i].SetActive(true);
         }
@@ -104,7 +106,18 @@ public class getSugarSystem : MonoBehaviour
         {
             patternViewer[correctCount].GetComponentInParent<Outline>().effectColor = Color.black;
             patternViewer[correctCount].SetActive(false);
-            // play corrent sound
+
+            if(audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Play();
+            }
+
+  
 
             correctCount++;
             Debug.Log("Good");
@@ -113,7 +126,8 @@ public class getSugarSystem : MonoBehaviour
         }
         else
         {
-            // play wrong sound
+            
+            
             Debug.Log("NO!!!!");
         }
     }

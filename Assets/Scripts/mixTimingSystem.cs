@@ -17,6 +17,7 @@ public class mixTimingSystem : MonoBehaviour
     public float answerRangeStart = 0f;
     public float answerRangeEnd = 0f;
     public TextMeshProUGUI countText;
+    public AudioSource audioSource;
     
 
     bool isNeedReverse = false;
@@ -26,6 +27,7 @@ public class mixTimingSystem : MonoBehaviour
 
     void OnEnable()
     {
+        audioSource = this.GetComponent<AudioSource>();
         correctCount = 0;
         imageAlphaValue = 0f;
         Start();
@@ -105,6 +107,17 @@ public class mixTimingSystem : MonoBehaviour
 
     public void correctMethod()
     {
+
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.Play();
+        }
+
         correctCount++;
         canSubmitAnswer = false;
         correctPanel.color = new Color(correctPanel.color.r, correctPanel.color.g, correctPanel.color.b, 1f);
