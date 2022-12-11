@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class Player_Move_Draw : MonoBehaviour
 {
-    [SerializeField] float speed = 10f;
+    //[SerializeField] float speed = 10f;
     public GameObject linePrefab;
     public CameraSetting camSet;
 
@@ -74,12 +74,14 @@ public class Player_Move_Draw : MonoBehaviour
 
     void MoveToTarget(int index)
     {
-        transform.DOMove(points[index], 0.35f).SetEase(Ease.Linear);
+        transform.DOKill();
+        transform.DOMove(points[index], 0.05f).SetEase(Ease.Linear);
         stamina -= 65*Time.deltaTime;
         scroll.fillAmount = stamina*0.01f;
     }
     public void StopMove()
     {
+        transform.DOKill();
         playerMove = false;
         ResetVar();
     }

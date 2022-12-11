@@ -25,7 +25,7 @@ public class BtnType : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
         switch (currentType)
         {
             case FlashType.Bottom:
-                Debug.Log("æ∆∑°");
+                //Debug.Log("æ∆∑°");
                 if (currentVisted)
                 {
                     FlashManager.FlashInstance.Charging();
@@ -33,7 +33,7 @@ public class BtnType : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 }
                 break;
             case FlashType.Top:
-                Debug.Log("¿ß");
+                //Debug.Log("¿ß");
                 if (!currentVisted)
                 {
                     FlashManager.FlashInstance.Charging();
@@ -41,13 +41,13 @@ public class BtnType : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
                 }
                 break;
             case FlashType.Exit:
-                Debug.Log("≈ª√‚");
+                //Debug.Log("≈ª√‚");
                 break;
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log(FlashManager.FlashInstance.ChargeState());
+        //Debug.Log(FlashManager.FlashInstance.ChargeState());
     }
 }

@@ -9,6 +9,7 @@ public class RandomEvent : MonoBehaviour
     public GameObject off_flahsEvent;
     public GameObject coffee_refine_event;
     public GameObject coffee_shake_event;
+    public GameObject batGame;
     
     public bool isTutoEnd = false;
     int eventID;
@@ -44,7 +45,7 @@ public class RandomEvent : MonoBehaviour
     public IEnumerator EventTimer()
     {
         isCorutineStart = true;
-        _timer = (float)Random.Range(20, 41);
+        _timer = (float)Random.Range(15, 21);
 
         while(_timer > 0)
         {
@@ -60,7 +61,7 @@ public class RandomEvent : MonoBehaviour
 
     void CallRandomEvent()
     {
-        eventID = Random.Range(1,1);
+        eventID = Random.Range(1,5);
 
         switch (eventID)
         {
@@ -82,10 +83,10 @@ public class RandomEvent : MonoBehaviour
                 coffee_shake_event.SetActive(true);
                 break;
             case 4:
+                Player_Move_Draw.inst.StopMove();
                 Player_Move_Draw.inst.DestroyLine();
                 Player_Move_Draw.inst.canClick = false;
-                Player_Move_Draw.inst.StopMove();
-                BatManager.inst.InvokeGame();
+                batGame.SetActive(true);
 
                 break;
             default:

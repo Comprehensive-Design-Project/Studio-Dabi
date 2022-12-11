@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     public AudioSource audioSource;
 
+    public AudioClip woohyeon;
     public AudioClip batSound;
     public AudioClip hitSound;
     public AudioClip attackSound;
@@ -49,5 +50,20 @@ public class SoundManager : MonoBehaviour
     public void PlayRock()
     {
         audioSource.PlayOneShot(rockSound);
+    }
+
+    public void PlayShake()
+    {
+        audioSource.PlayOneShot(woohyeon);
+    }
+
+    public void VolumeUp()
+    {
+        audioSource.volume = 1f;
+    }
+
+    public void VolumeDown()
+    {
+        audioSource.volume = 0.3f;
     }
 }

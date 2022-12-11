@@ -10,11 +10,11 @@ public class getSugarSystem : MonoBehaviour
     public GameObject[] patternViewer = new GameObject[15];
     public State[] patternArray = new State[15];
     public RawImage strainerImage;
-    public AudioSource audioSource;
+    //public AudioSource audioSource;
 
     public GameObject gameAdminObj;
 
-    float imageAlphaValue = 0f;
+    //float imageAlphaValue = 0f;
 
     public int correctCount = 0;
     
@@ -23,13 +23,15 @@ public class getSugarSystem : MonoBehaviour
 
     void OnEnable()
     {
-        audioSource = this.GetComponent<AudioSource>();
+        //audioSource = this.GetComponent<AudioSource>();
         for (int i = 0; i < 15; i++)
         {
             patternViewer[i].SetActive(true);
         }
         correctCount = 0;
         Start();
+
+        SoundManager.inst.VolumeUp();
     }
 
     // Start is called before the first frame update
@@ -71,16 +73,17 @@ public class getSugarSystem : MonoBehaviour
         {
             RandomEvent.inst.isCorutineStart = false;
             RandomEvent.inst.EventCorutine();
+            SoundManager.inst.VolumeDown();
             gameAdminObj.SetActive(false);
         }
 
-        if(strainerImage.color.a > 0.25f)
+/*        if(strainerImage.color.a > 0.25f)
         {
             imageAlphaValue = strainerImage.color.a;
             imageAlphaValue -= 0.03f;
             strainerImage.color = new Color(strainerImage.color.r, strainerImage.color.g, strainerImage.color.b, imageAlphaValue);
 
-        }
+        }*/
 
 
         if (Input.GetMouseButtonDown(0))
@@ -107,7 +110,9 @@ public class getSugarSystem : MonoBehaviour
             patternViewer[correctCount].GetComponentInParent<Outline>().effectColor = Color.black;
             patternViewer[correctCount].SetActive(false);
 
-            if(audioSource.isPlaying)
+
+            SoundManager.inst.PlayShake();
+/*            if(audioSource.isPlaying)
             {
                 audioSource.Stop();
                 audioSource.Play();
@@ -115,20 +120,20 @@ public class getSugarSystem : MonoBehaviour
             else
             {
                 audioSource.Play();
-            }
+            }*/
 
   
 
             correctCount++;
-            Debug.Log("Good");
-            strainerImage.color = new Color(strainerImage.color.r, strainerImage.color.g, strainerImage.color.b, 1f);
+            //Debug.Log("Good");
+            //strainerImage.color = new Color(strainerImage.color.r, strainerImage.color.g, strainerImage.color.b, 1f);
 
         }
         else
         {
             
             
-            Debug.Log("NO!!!!");
+            //Debug.Log("NO!!!!");
         }
     }
 }

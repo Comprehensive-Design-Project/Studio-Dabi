@@ -22,7 +22,7 @@ public class CoffeeGameSystem : MonoBehaviour
 
     int selector = 0;
     int answerSelector = 0;
-    int contents = 0;
+    //int contents = 0;
     bool isGameCompleted = false;
     int runnerStarter = 0;
     int runnerDestination = 1;
@@ -146,7 +146,7 @@ public class CoffeeGameSystem : MonoBehaviour
         slider_2DArray[2, 0] = GameObject.Find("Slider3").GetComponent<Slider>();
         slider_2DArray[2, 3] = GameObject.Find("Slider4").GetComponent<Slider>();
         slider_2DArray[3, 0] = GameObject.Find("Slider5").GetComponent<Slider>();
-        Debug.Log("Initiaize Completed!");
+        //Debug.Log("Initiaize Completed!");
     }
 
     void Update()
@@ -200,10 +200,10 @@ public class CoffeeGameSystem : MonoBehaviour
         {
 
             targetSlider.value = 0f;
-            Debug.Log(targetSlider.name + "의 작동을 마쳤습니다 ");
+            //Debug.Log(targetSlider.name + "의 작동을 마쳤습니다 ");
             runnerStarter = runnerDestination;
             runnerDestination = Shake(runnerStarter);
-            Debug.Log(slider_2DArray[runnerStarter, runnerDestination].name + "의 작동 시작 ");
+            //Debug.Log(slider_2DArray[runnerStarter, runnerDestination].name + "의 작동 시작 ");
             sliderRunner();
         }
     }
@@ -236,7 +236,7 @@ public class CoffeeGameSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wrong Answer");
+            //Debug.Log("Wrong Answer");
             //틀렸을 때의 누적 카운트도 셀 수 있다
             //게임 개발 방향에 따라 수정 될 여지는 있다
         }
@@ -247,7 +247,7 @@ public class CoffeeGameSystem : MonoBehaviour
             isGameCompleted = true;
             isGameEnd = true;
 
-            Debug.Log("Good!! Reward Here!!");
+            //Debug.Log("Good!! Reward Here!!");
             RandomEvent.inst.isCorutineStart = false;
             RandomEvent.inst.EventCorutine();
             CoffeeSwitch.SetActive(false);

@@ -43,7 +43,7 @@ public class Bat : MonoBehaviour
             mySequence.Kill();
             SoundManager.inst.PlayAttack();
             BatManager.inst.clickCount++;
-            Debug.Log("타이밍 맞게 클릭했다! 성공 수 : "+ BatManager.inst.clickCount);
+            //Debug.Log("타이밍 맞게 클릭했다! 성공 수 : "+ BatManager.inst.clickCount);
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
