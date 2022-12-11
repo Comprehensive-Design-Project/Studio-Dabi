@@ -5,9 +5,11 @@ using UnityEngine;
 public class RandomEvent : MonoBehaviour
 {
     public GameObject player_light;
+    public GameObject player_stateBar; // 활동게이지 
     public GameObject off_flahsEvent;
     public GameObject coffee_refine_event;
     public GameObject coffee_shake_event;
+    
     public bool isTutoEnd = false;
     int eventID;
     float _timer;
@@ -19,11 +21,12 @@ public class RandomEvent : MonoBehaviour
 
     private void Update()
     {
-       if (FlashManager.FlashInstance.ChargeState() >= 95)
+       if (FlashManager.FlashInstance.ChargeState() >= 100)
         {
             FlashManager.FlashInstance.battery = 0;
             off_flahsEvent.SetActive(false);
             player_light.SetActive(true);
+            player_stateBar.SetActive(true);
             isCorutineStart = false;
             EventCorutine();
         }
@@ -57,7 +60,7 @@ public class RandomEvent : MonoBehaviour
 
     void CallRandomEvent()
     {
-        eventID = Random.Range(1,5);
+        eventID = Random.Range(1,1);
 
         switch (eventID)
         {

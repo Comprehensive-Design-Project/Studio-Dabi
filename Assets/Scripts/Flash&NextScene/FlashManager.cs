@@ -45,7 +45,7 @@ public class FlashManager : MonoBehaviour
         return battery;
     }
 
-    public void Charging() // 배터리 양 1% 증가
+    public void Charging() // 배터리 양 5% 증가
     {
         if (battery < 100)
             battery += 5;

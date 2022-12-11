@@ -7,7 +7,7 @@ public class Light : MonoBehaviour
 {
     public Light2D player_light;
     public GameObject shake_event;
-
+    public GameObject pStateBar;
     bool isCorutineStart;
 
     // Start is called before the first frame update
@@ -27,7 +27,11 @@ public class Light : MonoBehaviour
        
     }
 
-   
+   public void TurnOnEvent()
+    {
+        shake_event.SetActive(true);
+        pStateBar.SetActive(false);
+    }
 
     public void LightCorutine()
     {
@@ -42,6 +46,7 @@ public class Light : MonoBehaviour
     IEnumerator LightOff()
     {
         isCorutineStart = true;
+        Invoke("TurnOnEvent", 8);
         yield return new WaitForSeconds(5f);
 
         player_light.pointLightOuterRadius = 2f;
@@ -64,7 +69,7 @@ public class Light : MonoBehaviour
         Player_Move_Draw.inst.StopMove();
         isCorutineStart = false;
         gameObject.SetActive(false);
-        shake_event.SetActive(true);
+        
         yield return null;
     }
 

@@ -17,6 +17,7 @@ public class LoadingSlide : MonoBehaviour
         loadingComplete.SetActive(false);
         nextButton.SetActive(false);
         loading.SetActive(true);
+        progressBar.value = 0;
     }
 
     void Start()
