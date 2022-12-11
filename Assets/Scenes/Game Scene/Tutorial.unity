@@ -1518,7 +1518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1369997230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\uB9C8\uC6B0\uC2A4\uB85C \uB4DC\uB798\uADF8\uB97C \uC774\uC6A9\uD558\uC5EC,
+  m_text: "\n\uB9C8\uC6B0\uC2A4 \uB4DC\uB798\uADF8\uB97C \uC774\uC6A9\uD558\uC5EC,
     \uD50C\uB808\uC774\uC5B4\uAC00 \uBB34\uC0AC\uD788 \uD0D0\uC0AC\uB97C \n\uB9C8\uCE60
     \uC218 \uC788\uAC8C \uB3C4\uC640\uC8FC\uC138\uC694!"
   m_isRightToLeft: 0

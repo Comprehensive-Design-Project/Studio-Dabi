@@ -15,4 +15,11 @@ public class EndingTrigger : MonoBehaviour
             }
         }
     }
+    private void Update()
+    {
+        /*if (Input.GetKeyDown(KeyCode.Space)) // ġƮŰ
+        {
+            SceneManager.LoadScene("Ending");
+        }*/
+    }
 }
